@@ -9,4 +9,5 @@ public interface ITaskService {
     List<TaskDTO> findAll();
     TaskDTO findById(Long id);
     TaskDTO update(Long id, TaskDTO updatedTask);
+    void delete(Long id);
 }
