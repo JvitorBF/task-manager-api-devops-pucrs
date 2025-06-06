@@ -7,4 +7,5 @@ import java.util.List;
 public interface ITaskService {
     TaskDTO create(TaskDTO task);
     List<TaskDTO> findAll();
+    TaskDTO findById(Long id);
 }

@@ -1,11 +1,14 @@
 package com.pucrs.devops.taskmanager.service;
 
 import com.pucrs.devops.taskmanager.dto.TaskDTO;
+import com.pucrs.devops.taskmanager.exception.NotFoundException;
 import com.pucrs.devops.taskmanager.model.Task;
 import com.pucrs.devops.taskmanager.repository.ITaskRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService implements  ITaskService{
@@ -28,6 +31,15 @@ public class TaskService implements  ITaskService{
         List<Task> tasks = repository.findAll();
         return tasks.stream().map(this::toDTO).toList();
     }
+
+    @Override
+    public TaskDTO findById(Long id) {
+        Task task = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Tarefa com ID " + id + " não encontrada"));
+
+        return toDTO(task);
+    }
+
 
     private Task toEntity(TaskDTO dto) {
         Task task = new Task();
