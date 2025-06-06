@@ -5,6 +5,8 @@ import com.pucrs.devops.taskmanager.model.Task;
 import com.pucrs.devops.taskmanager.repository.ITaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService implements  ITaskService{
     private final ITaskRepository repository;
@@ -19,6 +21,12 @@ public class TaskService implements  ITaskService{
         task.setCompleted(false);
         Task saved = repository.save(task);
         return toDTO(saved);
+    }
+
+    @Override
+    public List<TaskDTO> findAll() {
+        List<Task> tasks = repository.findAll();
+        return tasks.stream().map(this::toDTO).toList();
     }
 
     private Task toEntity(TaskDTO dto) {

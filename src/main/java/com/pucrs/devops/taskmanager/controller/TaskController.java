@@ -5,6 +5,8 @@ import com.pucrs.devops.taskmanager.service.ITaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1")
 public class TaskController {
@@ -20,4 +22,10 @@ public class TaskController {
         TaskDTO created = service.create(task);
         return ResponseEntity.status(201).body(created);
     }
+
+    @GetMapping("/task")
+    public ResponseEntity<List<TaskDTO>> getAllTasks() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
 }
