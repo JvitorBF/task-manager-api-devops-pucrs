@@ -8,4 +8,5 @@ public interface ITaskService {
     TaskDTO create(TaskDTO task);
     List<TaskDTO> findAll();
     TaskDTO findById(Long id);
+    TaskDTO update(Long id, TaskDTO updatedTask);
 }

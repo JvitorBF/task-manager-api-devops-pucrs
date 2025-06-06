@@ -40,6 +40,17 @@ public class TaskService implements  ITaskService{
         return toDTO(task);
     }
 
+    @Override
+    public TaskDTO update(Long id, TaskDTO updatedTask) {
+        Task existingTask = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Tarefa com ID \" + id + \" não encontrada"));
+        existingTask.setTitle(updatedTask.title());
+        existingTask.setDescription(updatedTask.description());
+        existingTask.setCompleted(updatedTask.completed());
+        Task updatedExistingTask = repository.save(existingTask);
+        return toDTO(updatedExistingTask);
+    }
+
 
     private Task toEntity(TaskDTO dto) {
         Task task = new Task();
