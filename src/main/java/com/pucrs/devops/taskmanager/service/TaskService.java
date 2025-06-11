@@ -43,7 +43,7 @@ public class TaskService implements  ITaskService{
     @Override
     public TaskDTO update(Long id, TaskDTO updatedTask) {
         Task existingTask = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Tarefa com ID \" + id + \" não encontrada"));
+                .orElseThrow(() -> new NotFoundException("Tarefa com ID " + id + " não encontrada"));
         existingTask.setTitle(updatedTask.title());
         existingTask.setDescription(updatedTask.description());
         existingTask.setCompleted(updatedTask.completed());
@@ -54,7 +54,7 @@ public class TaskService implements  ITaskService{
     @Override
     public void delete(Long id) {
         Task task = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Tarefa com ID \" + id + \" não encontrada"));
+                .orElseThrow(() -> new NotFoundException("Tarefa com ID " + id + " não encontrada"));
         repository.delete(task);
     }
 
