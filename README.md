@@ -37,6 +37,6 @@ Demonstrar a aplicação de integração contínua (CI) utilizando *GitHub Actio
 *Pré-requisitos:* Java 17, Maven
 
 ```bash
-  git clone https://github.com/<seu-usuario>/task-manager-api-devops-pucrs.git
+  git clone https://github.com/JvitorBF/task-manager-api-devops-pucrs.git
   cd task-manager-api-devops-pucrs
   ./mvnw spring-boot:run
