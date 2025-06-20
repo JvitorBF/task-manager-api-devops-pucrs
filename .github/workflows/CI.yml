@@ -54,6 +54,13 @@ jobs:
         id: get_ip
         run: echo "IP=$(terraform output -raw public_ip)" >> $GITHUB_ENV
 
+      - name: Wait for SSH to be available
+        run: |
+          until nc -zv ${{ env.IP }} 22; do
+            echo "Waiting for SSH on ${{ env.IP }}..."
+            sleep 10
+          done
+
       - name: Login no Docker Hub
         uses: docker/login-action@v3
         with:
